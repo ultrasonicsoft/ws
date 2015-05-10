@@ -11,8 +11,7 @@ angular.module('myApp', ['ngRoute',
             var modalInstance = $modal.open({
                 animation: true,
                 templateUrl: 'directives/register/register.html',
-                controller: 'RegisterUserCtrl',
-                size: 'sm'
+                controller: 'RegisterUserCtrl'
             });
 
         }
