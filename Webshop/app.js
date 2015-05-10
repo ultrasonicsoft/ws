@@ -1,29 +1,26 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'ui.bootstrap'
-]).
-    controller('WebShopCtrl', function ($scope) {
+angular.module('myApp', ['ngRoute',
+                        'ui.bootstrap'])
+    .controller('WebShopCtrl', function ($rootScope, $scope, $modal) {
 
-    $scope.couponCode = 1234;
+        $rootScope.isLoggingRequired = true;
+        $scope.registerUser = function() {
+            
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'directives/register/register.html',
+                controller: 'RegisterUserCtrl',
+                size: 'sm'
+            });
 
-    $scope.submitCoupon = function ($http) {
-        alert("you entered:" + $scope.couponCode);
-        // Simple GET request example :
-        $http.get('/someUrl').
-          success(function (data, status, headers, config) {
-              // this callback will be called asynchronously
-              // when the response is available
-              alert(data);
-                $scope.message = data;
-            }).
-          error(function (data, status, headers, config) {
-              // called asynchronously if an error occurs
-              // or server returns response with an error status.
-              alert(data);
-          });
-    };
+        }
 
-});;
+    })
+    .directive('login', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/login/login.html'
+        };
+    });
